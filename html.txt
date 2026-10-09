@@ -1,0 +1,210 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI-Powered Resume Analyzer</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #f5f5f6, #764ba2);
+            color: #333;
+            min-height: 100vh;
+        }
+
+        h1 {
+            text-align: center;
+            color: white;
+            font-size: 32px;
+            margin: 25px 0;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 25px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        h2 {
+            text-align: center;
+            color: #5e35b1;
+        }
+
+        p {
+            line-height: 1.6;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin: 15px 0 10px;
+        }
+
+        input[type="file"],
+        input[type="text"] {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+
+        button {
+            padding: 12px 20px;
+            border: none;
+            border-radius: 8px;
+            background: #42a5f5;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #1e88e5;
+        }
+
+        .notice {
+            background: #fff3e0;
+            padding: 12px;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 25px;
+        }
+
+        .feature-card {
+            background: #f3e5f5;
+            padding: 18px;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .feature-card h3 {
+            color: #6a1b9a;
+        }
+
+        footer {
+            text-align: center;
+            color: white;
+            margin-top: 25px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>AI-Powered Resume Analyzer</h1>
+
+    <div class="container">
+
+        <h2>Resume Extraction and Job Classification</h2>
+
+        <p>
+            This project analyzes PDF resumes and extracts important
+            information such as candidate name, email, phone number,
+            technical skills, education, and job category using Python
+            and Flask.
+        </p>
+
+        <form id="resumeForm">
+            <label for="resume">Upload Your Resume (PDF):</label>
+
+            <input
+                type="file"
+                id="resume"
+                name="resume"
+                accept=".pdf,application/pdf"
+                required
+            >
+
+            <button type="submit">Analyze Resume</button>
+        </form>
+
+        <div id="message" class="notice" hidden></div>
+
+        <div class="features">
+
+            <div class="feature-card">
+                <h3>Resume Extraction</h3>
+                <p>Extract candidate details from PDF resumes.</p>
+            </div>
+
+            <div class="feature-card">
+                <h3>Skills Identification</h3>
+                <p>Identify programming languages and professional skills.</p>
+            </div>
+
+            <div class="feature-card">
+                <h3>Job Classification</h3>
+                <p>Match resume keywords to relevant job categories.</p>
+            </div>
+
+            <div class="feature-card">
+                <h3>Data Export</h3>
+                <p>Support structured CSV and JSON output through the backend.</p>
+            </div>
+
+        </div>
+
+        <div class="notice">
+            <strong>Technologies Used:</strong>
+            HTML, CSS, Python, Flask, pdfplumber, Regular Expressions,
+            and JSON.
+        </div>
+
+    </div>
+
+    <footer>
+        <p>AI-Powered Resume Extraction and Job Classification</p>
+    </footer>
+
+    <script>
+        const form = document.getElementById("resumeForm");
+        const fileInput = document.getElementById("resume");
+        const message = document.getElementById("message");
+
+        form.addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            const file = fileInput.files[0];
+
+            if (!file) {
+                showMessage("Please select a PDF resume.");
+                return;
+            }
+
+            if (!file.name.toLowerCase().endsWith(".pdf")) {
+                showMessage("Please upload a PDF file only.");
+                return;
+            }
+
+            showMessage(
+                "PDF selected successfully. To extract resume details, " +
+                "connect this page to your Python Flask backend."
+            );
+        });
+
+        function showMessage(text) {
+            message.textContent = text;
+            message.hidden = false;
+        }
+    </script>
+
+</body>
+</html>
